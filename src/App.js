@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './bulma.css';
 
 class App extends Component {
   render() {
@@ -51,13 +52,26 @@ function ScoresComponent() {
     return <div>Loading...</div>;
   } else {
     return (
-      <ul>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Home Team</th>
+            <th></th>
+            <th>Away Team</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
         {games.map(item => (
-          <li key={item.gamePk}>
-            {item.teams.away.team.name} {item.teams.home.team.name}
-          </li>
+          <tr key={item.gamePk}>
+            <td>{item.teams.home.team.name}</td>
+            <td>{item.teams.home.score}</td>
+            <td>{item.teams.away.team.name}</td>
+            <td>{item.teams.away.score}</td>
+          </tr>
         ))}
-      </ul>
+        </tbody>
+      </table>
     );
   }
 }
