@@ -1,0 +1,6 @@
+{
+    "name": "websocketd",
+    "version": "0.0.1",
+    "description": "websocket endpoints",
+    "dependencies": {}
+  }

@@ -4,9 +4,14 @@ import './App.css';
 import './bulma.css';
 
 const getTodayDate = (d) => {
-  let day = d.getDate().toString();
-  let month = (d.getMonth() + 1).toString();
-  let year = d.getFullYear().toString();
+  
+  let rf = d.toLocaleString('en-US', { timeZone: 'UTC' });
+  let r = d.toLocaleDateString('en-US', { timeZone: 'UTC' });
+  console.log(rf);
+  let rs = r.split('/');
+  let day = rs[1];
+  let month = rs[0];
+  let year = rs[2];
   let day_p = (day.length < 2) ? `0${day}` : day;
   let month_p = (month.length < 2) ? `0${month}` : month;
   return `${year}-${month_p}-${day_p}`;
@@ -23,6 +28,13 @@ function ScoresComponent() {
 
   let addOneDay = () => { setGdate(new Date(gdate.setDate(gdate.getDate() + 1))); };
   let subOneDay = () => { setGdate(new Date(gdate.setDate(gdate.getDate() - 1))); };
+  let setGdateWithString = (e) => {
+    let new_d = new Date(e.target.value);
+    console.log("new_d is...");
+    console.log(new_d);
+    
+    setGdate(new_d);
+  };
   // Note: the empty deps array [] means
   // this useEffect will run once
   // similar to componentDidMount()
@@ -33,7 +45,7 @@ function ScoresComponent() {
       .then(
         (result) => {
           setIsLoaded(true);
-          console.log(result)
+          console.log(result);
           setGames(result.dates[0].games);
         },
         // Note: it's important to handle errors here
@@ -52,12 +64,16 @@ function ScoresComponent() {
     return <div>Loading...</div>;
   } else {
     return (
-      <div class="columns is-centered">
-        <div class="column is-one-fifth">
+      <div className="columns is-centered">
+        <div className="column is-one-fifth">
           <button onClick={subOneDay}>Prev Day</button>
+          <div>
+            <label htmlFor="date_picky">Or, pick a day:</label>
+            <input type="date" id="date_picky" min="2021-03-01" max="2021-10-05" onChange={setGdateWithString} value={getTodayDate(gdate)} />
+          </div>
         </div>
-        <div class="column is-one-third">
-          <table class="table">
+        <div className="column is-one-third">
+          <table className="table">
             <thead>
               <tr>
                 <th>Home Team</th>
@@ -78,7 +94,7 @@ function ScoresComponent() {
             </tbody>
           </table>
         </div>
-        <div class="column is-one-fifth">
+        <div className="column is-one-fifth">
           <button onClick={addOneDay}>Next Day</button>
         </div>
       </div>
