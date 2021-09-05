@@ -24,6 +24,8 @@ function ScoresComponent() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [games, setGames] = useState([]);
 
+  let z = () => { setGames([]);};
+
   // Note: the empty deps array [] means
   // this useEffect will run once
   // similar to componentDidMount()
@@ -52,6 +54,8 @@ function ScoresComponent() {
     return <div>Loading...</div>;
   } else {
     return (
+      <div>
+        <button onClick={z}>clicka meh</button>
       <table class="table">
         <thead>
           <tr>
@@ -72,6 +76,8 @@ function ScoresComponent() {
         ))}
         </tbody>
       </table>
+      </div>
+      
     );
   }
 }
