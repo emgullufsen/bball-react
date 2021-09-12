@@ -30,6 +30,10 @@
     <script src="/socket.io/socket.io.js"></script>
 <script>
   var socket = io();
+  socket.on('scoresupdate', function(scores) {
+    console.log("received SCORES UPDATE!!!");
+    console.log(scores);
+  });
 </script>
   </body>
 </html>

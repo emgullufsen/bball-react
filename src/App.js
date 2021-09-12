@@ -2,20 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import './bulma.css';
-
-const getTodayDate = (d) => {
-  
-  let rf = d.toLocaleString('en-US', { timeZone: 'UTC' });
-  let r = d.toLocaleDateString('en-US', { timeZone: 'UTC' });
-  console.log(rf);
-  let rs = r.split('/');
-  let day = rs[1];
-  let month = rs[0];
-  let year = rs[2];
-  let day_p = (day.length < 2) ? `0${day}` : day;
-  let month_p = (month.length < 2) ? `0${month}` : month;
-  return `${year}-${month_p}-${day_p}`;
-};
+import { yankDateString } from './yank';
 
 function ScoresComponent() {
   const endPointBase = "http://statsapi.mlb.com/api/v1/schedule/games/?sportId=1";
@@ -29,7 +16,10 @@ function ScoresComponent() {
   let addOneDay = () => { setGdate(new Date(gdate.setDate(gdate.getDate() + 1))); };
   let subOneDay = () => { setGdate(new Date(gdate.setDate(gdate.getDate() - 1))); };
   let setGdateWithString = (e) => {
+    console.log(`e.target.value is ${e.target.value}`);
     let new_d = new Date(e.target.value);
+    new_d.setHours(new_d.getHours() + 12);
+    //new_d.setDate(new_d.getDate() + 1)
     console.log("new_d is...");
     console.log(new_d);
     
@@ -39,7 +29,7 @@ function ScoresComponent() {
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
-    let ds = getTodayDate(gdate);
+    let ds = yankDateString(gdate);
     fetch(`${endPointBase}&startDate=${ds}&endDate=${ds}`)
       .then(res => res.json())
       .then(
@@ -69,7 +59,7 @@ function ScoresComponent() {
           <button onClick={subOneDay}>Prev Day</button>
           <div>
             <label htmlFor="date_picky">Or, pick a day:</label>
-            <input type="date" id="date_picky" min="2021-03-01" max="2021-10-05" onChange={setGdateWithString} value={getTodayDate(gdate)} />
+            <input type="date" id="date_picky" min="2021-03-01" max="2021-10-05" onChange={setGdateWithString} value={yankDateString(gdate)} />
           </div>
         </div>
         <div className="column is-one-third">
