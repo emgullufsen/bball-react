@@ -16,24 +16,7 @@
     <title>React App</title>
   </head>
   <body>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <div id="scores_spot"></div>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start`.
-      To create a production bundle, use `npm run build`.
-    -->
-    <script src="/socket.io/socket.io.js"></script>
-<script>
-  var socket = io();
-  socket.on('scoresupdate', function(scores) {
-    console.log("received SCORES UPDATE!!!");
-    console.log(scores);
-  });
-</script>
   </body>
 </html>

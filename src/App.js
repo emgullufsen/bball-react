@@ -3,6 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 import './bulma.css';
 import { yankDateString } from './yank';
+import { io } from "socket.io/client-dist/socket.io";
+
+var socket = io({path: "/scoresws"});
+  socket.on('scoresupdate', function(scores) {
+    console.log("received SCORES UPDATE!!!");
+    console.log(scores);
+});
 
 function ScoresComponent() {
   const endPointBase = "http://statsapi.mlb.com/api/v1/schedule/games/?sportId=1";
