@@ -19,7 +19,11 @@ const yankDateString = (d) => {
 const endPointBase = "http://statsapi.mlb.com/api/v1/schedule/games/?sportId=1"
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/build/index.html');
+});
+
+app.use('/static', (req, res) => {
+  res.sendFile(__dirname + '/build/static' + req.path);
 });
 
 io.on('connection', (socket) => {

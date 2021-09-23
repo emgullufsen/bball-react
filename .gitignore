@@ -8,7 +8,7 @@ node_modules/
 
 # production
 /build
-
+/src/websocketd/build
 # misc
 .DS_Store
 .env
