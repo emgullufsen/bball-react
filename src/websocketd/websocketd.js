@@ -17,6 +17,7 @@ const yankDateString = (d) => {
 };
 
 const endPointBase = "http://statsapi.mlb.com/api/v1/schedule/games/?sportId=1"
+const port = process.env.PORT || 4101
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/build/index.html');
@@ -44,8 +45,8 @@ function emitScores() {
   );
 }
 
-server.listen(4101, () => {
-  console.log('listening on *:4101');
+server.listen(port, () => {
+  console.log(`listening on *:${port}`);
 });
 
 setInterval(emitScores, 5000);
