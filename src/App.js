@@ -4,20 +4,13 @@ import './App.css';
 import './bulma.css';
 import { yankDateString } from './yank';
 
-/*
-// Eventually we'll incorporate the websocket layer
-// ./websocketd/websocketd.js is a socket.io server
-// endpoint for node and feeds live scores updates to
-// all connected clients...
-// -eric
-*/
-// import { io } from "socket.io/client-dist/socket.io";
+import { io } from "socket.io/client-dist/socket.io";
 
-// var socket = io({path: "/scoresws"});
-//   socket.on('scoresupdate', function(scores) {
-//     console.log("received SCORES UPDATE!!!");
-//     console.log(scores);
-// });
+var socket = io({path: "/scoresws"});
+  socket.on('scoresupdate', function(scores) {
+    console.log("received SCORES UPDATE!!!");
+    console.log(scores);
+});
 
 function ScoresComponent() {
   const endPointBase = "http://statsapi.mlb.com/api/v1/schedule/games/?sportId=1";
