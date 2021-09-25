@@ -6,18 +6,13 @@ import { yankDateString } from './yank';
 
 import { io } from "socket.io/client-dist/socket.io";
 
-var socket = io({path: "/scoresws"});
-  socket.on('scoresupdate', function(scores) {
-    console.log("received SCORES UPDATE!!!");
-    console.log(scores);
-});
-
 function ScoresComponent() {
   const endPointBase = "https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1";
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [games, setGames] = useState([]);
   const [gdate, setGdate] = useState(new Date());
+  const [resp, setResp] = useState({});
 
   let clearGames = () => { setGames([]); };
 
@@ -30,12 +25,29 @@ function ScoresComponent() {
     //new_d.setDate(new_d.getDate() + 1)
     console.log("new_d is...");
     console.log(new_d);
-    
+
     setGdate(new_d);
   };
   // Note: the empty deps array [] means
   // this useEffect will run once
   // similar to componentDidMount()
+  useEffect(() => {
+    const socket = io({ path: "/scoresws" });
+    socket.on('scoresupdate', function (scores) {
+      setResp(scores);
+      
+    });
+  }, []);
+
+  useEffect(() => {
+    if (resp.dates !== undefined){
+      console.log(`scores date = ${resp.dates[0].date}, gdate = ${yankDateString(gdate)} and isSame = ${yankDateString(gdate) == resp.dates[0].date}`);
+      if (resp.dates[0].date == yankDateString(gdate)){
+        setGames(resp.dates[0].games);
+      }
+    }
+  }, [resp]);
+
   useEffect(() => {
     let ds = yankDateString(gdate);
     fetch(`${endPointBase}&startDate=${ds}&endDate=${ds}`)
