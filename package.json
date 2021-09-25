@@ -10,7 +10,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node ./src/websocketd/websocketd.js",
+    "start": "npm run build && node ./src/websocketd/websocketd.js",
     "build": "react-scripts build && rm -rf ./src/websocketd/build && mv build ./src/websocketd/",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
