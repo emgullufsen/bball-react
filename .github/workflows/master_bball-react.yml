@@ -23,8 +23,9 @@ jobs:
 
       - name: npm install, build
         run: |
-          npm install && cd ./src/websocketd && npm install
+          npm install
           npm run build --if-present
+          cd ./src/websocketd && npm install && cd ../..
         env:
           CI: ""
 
