@@ -13,7 +13,7 @@ var socket = io({path: "/scoresws"});
 });
 
 function ScoresComponent() {
-  const endPointBase = "http://statsapi.mlb.com/api/v1/schedule/games/?sportId=1";
+  const endPointBase = "https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1";
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [games, setGames] = useState([]);
