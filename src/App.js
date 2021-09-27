@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import './bulma.css';
 import { yankDateString } from './yank';
+import team_logo_158 from './images/team_logo_158.svg';
 
 import { io } from "socket.io/client-dist/socket.io";
 
@@ -83,6 +84,8 @@ function ScoresComponent() {
           </div>
         </div>
         <div className="column is-one-third">
+          
+          <img src={team_logo_158} alt="team logo 158" />
           <table className="table">
             <thead>
               <tr>
@@ -95,7 +98,7 @@ function ScoresComponent() {
             <tbody>
               {games.map(item => (
                 <tr key={item.gamePk}>
-                  <td>{item.teams.home.team.name}</td>
+                  <td>{item.teams.home.team.name}<img src="%PUBLIC_URL%/testing/" /></td>
                   <td>{item.teams.home.score}</td>
                   <td>{item.teams.away.team.name}</td>
                   <td>{item.teams.away.score}</td>
