@@ -98,7 +98,7 @@ function ScoresComponent() {
             <tbody>
               {games.map(item => (
                 <tr key={item.gamePk}>
-                  <td>{item.teams.home.team.name}<img src="%PUBLIC_URL%/testing/" /></td>
+                  <td>{item.teams.home.team.name}<img src={process.env.PUBLIC_URL + item.teams.home.team.id + '.svg'}  /></td>
                   <td>{item.teams.home.score}</td>
                   <td>{item.teams.away.team.name}</td>
                   <td>{item.teams.away.score}</td>
