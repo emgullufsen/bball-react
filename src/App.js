@@ -1,9 +1,10 @@
 import React, { Component, useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import './bulma.css';
 import { yankDateString } from './yank';
 import { io } from "socket.io/client-dist/socket.io";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
 function ScoresComponent() {
   const endPointBase = "https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1";
@@ -31,9 +32,9 @@ function ScoresComponent() {
   }, []);
 
   useEffect(() => {
-    if (resp.dates !== undefined){
+    if (resp.dates !== undefined) {
       console.log(`scores date = ${resp.dates[0].date}, gdate = ${yankDateString(gdate)} and isSame = ${yankDateString(gdate) == resp.dates[0].date}`);
-      if (resp.dates[0].date == yankDateString(gdate)){
+      if (resp.dates[0].date == yankDateString(gdate)) {
         setGames(resp.dates[0].games);
       }
     }
@@ -66,13 +67,6 @@ function ScoresComponent() {
   } else {
     return (
       <div className="columns is-centered">
-        <div className="column is-one-fifth">
-          <button onClick={subOneDay}>Prev Day</button>
-          <div>
-            <label htmlFor="date_picky">Or, pick a day:</label>
-            <input type="date" id="date_picky" min="2021-03-01" max="2021-10-05" onChange={setGdateWithString} value={yankDateString(gdate)} />
-          </div>
-        </div>
         <div className="column is-one-third">
           <table className="table">
             <thead>
@@ -86,20 +80,44 @@ function ScoresComponent() {
             <tbody>
               {games.map(item => (
                 <tr key={item.gamePk}>
-                  <td>{item.teams.home.team.name}<img src={'/images/' + item.teams.home.team.id + '.svg'}  /></td>
+                  <td>
+                    <figure>
+                      <img className="team_logo" src={'/images/' + item.teams.home.team.id + '.svg'} />
+                    </figure>
+                    <figcaption>
+                      {item.teams.home.team.name}
+                    </figcaption>
+                  </td>
                   <td>{item.teams.home.score}</td>
-                  <td>{item.teams.away.team.name}<img src={'/images/' + item.teams.away.team.id + '.svg'}  /></td>
+                  <td>
+                    <figure>
+                      <img className="team_logo" src={'/images/' + item.teams.away.team.id + '.svg'} />
+                    </figure>
+                    <figcaption>
+                      {item.teams.away.team.name}
+                    </figcaption>
+                  </td>
                   <td>{item.teams.away.score}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <div className="column is-one-fifth">
-          <button onClick={addOneDay}>Next Day</button>
+        <div className="column is-one-third">
+          <nav className="scoreboard_controls navbar" role="navigation" aria-label="main navigation">
+            <button onClick={subOneDay}>
+              <FontAwesomeIcon icon={faArrowLeft} />
+            </button>
+            <div>
+              <label htmlFor="date_picky"></label>
+              <input type="date" id="date_picky" min="2021-03-01" max="2021-10-05" onChange={setGdateWithString} value={yankDateString(gdate)} />
+            </div>
+            <button onClick={addOneDay}>
+              <FontAwesomeIcon icon={faArrowRight} />
+            </button>
+          </nav>
         </div>
       </div>
-
     );
   }
 }
