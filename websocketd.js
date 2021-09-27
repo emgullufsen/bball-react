@@ -27,6 +27,10 @@ app.use('/static', (req, res) => {
   res.sendFile(__dirname + '/build/static' + req.path);
 });
 
+app.use('/images', (req, res) => {
+  res.sendFile(__dirname + '/build/images' + req.path);
+});
+
 io.on('connection', (socket) => {
     console.log('a user connected');
     socket.on('disconnect', () => {

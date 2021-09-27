@@ -3,8 +3,6 @@ import logo from './logo.svg';
 import './App.css';
 import './bulma.css';
 import { yankDateString } from './yank';
-import team_logo_158 from './images/team_logo_158.svg';
-
 import { io } from "socket.io/client-dist/socket.io";
 
 function ScoresComponent() {
@@ -14,19 +12,12 @@ function ScoresComponent() {
   const [games, setGames] = useState([]);
   const [gdate, setGdate] = useState(new Date());
   const [resp, setResp] = useState({});
-
   let clearGames = () => { setGames([]); };
-
   let addOneDay = () => { setGdate(new Date(gdate.setDate(gdate.getDate() + 1))); };
   let subOneDay = () => { setGdate(new Date(gdate.setDate(gdate.getDate() - 1))); };
   let setGdateWithString = (e) => {
-    console.log(`e.target.value is ${e.target.value}`);
     let new_d = new Date(e.target.value);
     new_d.setHours(new_d.getHours() + 12);
-    //new_d.setDate(new_d.getDate() + 1)
-    console.log("new_d is...");
-    console.log(new_d);
-
     setGdate(new_d);
   };
   // Note: the empty deps array [] means
@@ -36,7 +27,6 @@ function ScoresComponent() {
     const socket = io({ path: "/scoresws" });
     socket.on('scoresupdate', function (scores) {
       setResp(scores);
-      
     });
   }, []);
 
@@ -84,8 +74,6 @@ function ScoresComponent() {
           </div>
         </div>
         <div className="column is-one-third">
-          
-          <img src={team_logo_158} alt="team logo 158" />
           <table className="table">
             <thead>
               <tr>
@@ -98,9 +86,9 @@ function ScoresComponent() {
             <tbody>
               {games.map(item => (
                 <tr key={item.gamePk}>
-                  <td>{item.teams.home.team.name}<img src={process.env.PUBLIC_URL + item.teams.home.team.id + '.svg'}  /></td>
+                  <td>{item.teams.home.team.name}<img src={'/images/' + item.teams.home.team.id + '.svg'}  /></td>
                   <td>{item.teams.home.score}</td>
-                  <td>{item.teams.away.team.name}</td>
+                  <td>{item.teams.away.team.name}<img src={'/images/' + item.teams.away.team.id + '.svg'}  /></td>
                   <td>{item.teams.away.score}</td>
                 </tr>
               ))}
