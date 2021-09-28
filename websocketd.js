@@ -39,7 +39,9 @@ io.on('connection', (socket) => {
   });
 
 function emitScores() {
-  let ds = yankDateString(new Date());
+  let dat = new Date();
+  dat.setHours(dat.getHours() - 8);
+  let ds = yankDateString(dat);
   let the_url = `${endPointBase}&startDate=${ds}&endDate=${ds}`;
   axios.get(the_url).then(
     (r) => {
