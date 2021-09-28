@@ -6,3 +6,7 @@
 figcaption {
   font-size: x-small;
 }
+
+.day-controls {
+  display: inline-block;
+}

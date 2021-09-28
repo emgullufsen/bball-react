@@ -68,6 +68,9 @@ function ScoresComponent() {
     return (
       <div className="columns is-centered">
         <div className="column is-one-third">
+
+        </div>
+        <div className="column is-one-third">
           <table className="table">
             <thead>
               <tr>
@@ -104,18 +107,24 @@ function ScoresComponent() {
           </table>
         </div>
         <div className="column is-one-third">
-          <nav className="scoreboard_controls navbar" role="navigation" aria-label="main navigation">
-            <button onClick={subOneDay}>
-              <FontAwesomeIcon icon={faArrowLeft} />
-            </button>
-            <div>
-              <label htmlFor="date_picky"></label>
-              <input type="date" id="date_picky" min="2021-03-01" max="2021-10-05" onChange={setGdateWithString} value={yankDateString(gdate)} />
+          <article className="panel is-primary day-controls">
+            <p className="panel-heading">
+              Pick Day:
+            </p>
+            <div className="buttons">
+              <button className="button is-link" onClick={subOneDay}>
+                <FontAwesomeIcon icon={faArrowLeft} />
+              </button>
+              <div>
+                <label htmlFor="date_picky"></label>
+                <input type="date" id="date_picky" min="2021-03-01" max="2021-10-05" onChange={setGdateWithString} value={yankDateString(gdate)} />
+              </div>
+              <button className="button is-link" onClick={addOneDay}>
+                <FontAwesomeIcon icon={faArrowRight} />
+              </button>
             </div>
-            <button onClick={addOneDay}>
-              <FontAwesomeIcon icon={faArrowRight} />
-            </button>
-          </nav>
+
+          </article>
         </div>
       </div>
     );
