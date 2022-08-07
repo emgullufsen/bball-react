@@ -40,4 +40,4 @@ jobs:
           EOF
           cat ~/.ssh/staging.key
           ls -pal ~/.ssh
-          echo "ssh staging 'bash -s' < /tmp/hello.sh"
+          ssh staging 'bash -s' < /tmp/hello.sh
