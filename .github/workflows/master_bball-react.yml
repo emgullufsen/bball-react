@@ -8,10 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: 'Production'
+    env:
+      SECRET_KEYF: ${{ secrets.SSH_PRIV_KEY }}
     steps:
       - uses: actions/checkout@v2
       - name: save key file from secret and deploy
         run: |
-          echo ${{ secrets.SSH_PRIV_KEY }}
-          echo ${{ secrets.SSH_PRIV_KEY }} > ./id_rickysquid
+          echo $SECRET_KEYF
+          echo $SECRET_KEYF > ./id_rickysquid
           ssh -i ./id_rickysquid ubuntu@rickysquid.org 'bash -s' < ./scripts/grab-and-run-bball.sh
