@@ -10,9 +10,10 @@ jobs:
       - name: do it
         env:
           KEYF: ${{ secrets.SSH_PRIVATE_KEY }}
+          KH: ${{ secrets.SSH_KNOWN_HOSTS }}
         run: |
           ls
-          echo ${{ secrets.SSH_KNOWN_HOSTS }} > ./known_hosts_ricky
+          echo $KH > ./known_hosts_ricky
           cat << EOF > /tmp/grab-and-run.sh
           cd /var/www/mlb.rickysquid.org/html/bball-react
           git pull
