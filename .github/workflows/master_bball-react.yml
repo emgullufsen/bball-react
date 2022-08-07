@@ -4,18 +4,13 @@ on:
   push
 
 jobs:
-  install-priv-key-file-and-deploy:
-    runs-on: ubuntu-latest
-    environment:
-      name: 'Production'
-    env:
-      SECRET_KEYF: ${{ secrets.SSH_PRIV_KEY }}
+  the-job:
     steps:
-      - uses: actions/checkout@v2
-      - name: save key file from secret and deploy
-        with:
-          SECRET_KEYF: ${{ secrets.SSH_PRIV_KEY }}
+      - name: do it
+        uses: actions/checkout@v2
+        env:
+          KEYF: ${{ secrets.SSH_PRIV_KEY }}
         run: |
-          echo $SECRET_KEYF
-          echo $SECRET_KEYF > ./id_rickysquid
+          echo $KEYF
+          echo $KEYF > ./id_rickysquid
           ssh -i ./id_rickysquid ubuntu@rickysquid.org 'bash -s' < ./scripts/grab-and-run-bball.sh
