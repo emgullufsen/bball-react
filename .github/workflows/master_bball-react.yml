@@ -27,7 +27,12 @@ jobs:
         with:
           name: node-app
           path: .
-
+  install-priv-key-file-and-deploy:
+    steps:
+      - name: save key file from secret
+        run: |
+          echo {{ secret.SSH_PRIV_KEY }} > ~/.ssh/id_rsa
+          ssh -i ~/.ssh/id_rsa ubuntu@rickysquid.org bash ./.github/scripts/grab-and-run-bball.sh
   deploy:
     runs-on: ubuntu-latest
     needs: build
