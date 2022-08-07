@@ -9,13 +9,8 @@ jobs:
     steps:
       - name: do it
         env:
-          KEYF: ${{ secrets.SSH_PRIV_KEY }}
+          KEYF: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
-          echo $KEYF
-          echo $SSH_DOMAIN
-          echo ${{ secrets.SSH_DOMAIN }}
-          echo ${{ secrets.SSH_PRIV_KEY }}
-          $SSH_PRIV_KEY
-          $KEYF
+          ls
           echo $KEYF > ./id_rickysquid
           ssh -i ./id_rickysquid ubuntu@rickysquid.org 'bash -s' < ./scripts/grab-and-run-bball.sh
