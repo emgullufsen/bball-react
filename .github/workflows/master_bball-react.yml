@@ -35,9 +35,10 @@ jobs:
           cat << EOF > /tmp/grab-and-run.sh
           cd /var/www/mlb.rickysquid.org/html/bball-react
           git pull
+          npm install
           npm run build
           npm run start &
           EOF
           cat ~/.ssh/staging.key
           ls -pal ~/.ssh
-          ssh staging 'bash -s' < /tmp/hello.sh
+          ssh staging 'bash -s' < /tmp/grab-and-run.sh
