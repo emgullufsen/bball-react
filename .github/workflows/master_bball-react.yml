@@ -12,5 +12,12 @@ jobs:
           KEYF: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           ls
+          ssh-keyscan -H ${{ secrets.SSH_DOMAIN }} >> ~/.ssh/known_hosts
+          cat << EOF > /tmp/grab-and-run.sh
+          cd /var/www/mlb.rickysquid.org/html/bball-react
+          git pull
+          npm run build
+          npm run start &
+          EOF
           echo $KEYF > ./id_rickysquid
-          ssh -i ./id_rickysquid ubuntu@rickysquid.org 'bash -s' < ./scripts/grab-and-run-bball.sh
+          ssh -i ./id_rickysquid ubuntu@rickysquid.org 'bash -s' < /tmp/grab-and-run.sh
