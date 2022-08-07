@@ -5,6 +5,7 @@ on:
 
 jobs:
   the-job:
+    runs-on: ubuntu-latest
     steps:
       - name: do it
         env:
