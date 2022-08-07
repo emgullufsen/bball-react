@@ -14,4 +14,4 @@ jobs:
         run: |
           echo {{ secret.SSH_PRIV_KEY }} > ./id_rickysquid
           ls
-          ssh -i ./id_rickysquid ubuntu@rickysquid.org bash ./.github/scripts/grab-and-run-bball.sh
+          ssh -i ./id_rickysquid ubuntu@rickysquid.org 'bash -s' < ./.github/scripts/grab-and-run-bball.sh
