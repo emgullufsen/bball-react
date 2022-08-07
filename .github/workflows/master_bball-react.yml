@@ -12,7 +12,7 @@ jobs:
       - shell: bash
       - uses: actions/checkout@v2
       - name: save key file from secret and deploy
-        env:
+      - env:
           SECRET_KEYF: ${{ secrets.SSH_PRIV_KEY }}
         run: |
           echo $SECRET_KEYF
