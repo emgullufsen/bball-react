@@ -7,7 +7,6 @@ jobs:
   the-job:
     steps:
       - name: do it
-        uses: actions/checkout@v2
         env:
           KEYF: ${{ secrets.SSH_PRIV_KEY }}
         run: |
