@@ -12,6 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: save key file from secret
         run: |
+          echo {{ secret.SSH_PRIV_KEY }}
           echo {{ secret.SSH_PRIV_KEY }} > ./id_rickysquid
           ls -pal
           ls -pal scripts
