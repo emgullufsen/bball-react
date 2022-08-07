@@ -14,13 +14,13 @@ jobs:
           mkdir -p ~/.ssh/
           echo $${{ secrets.SSH_PRIVATE_KEY }} > ~/.ssh/staging.key
           chmod 600 ~/.ssh/staging.key
-          cat << EOF1 > ~/.ssh/config
+          cat << EOF > ~/.ssh/config
           Host staging
             HostName ${{ secrets.SSH_DOMAIN_NAME }}
             User ${{ secrets.SSH_USER }}
             IdentityFile ~/.ssh/staging.key
             StrictHostKeyChecking no
-          EOF1
+          EOF
           cat ~/.ssh/config
         # env:
         #   SSH_USER: ${{ secrets.SSH_USER }}
@@ -29,10 +29,10 @@ jobs:
 
       - name: deploy
         run: |
-          cat << EOF2 > /tmp/grab-and-run.sh
+          cat << EOF > /tmp/grab-and-run.sh
           cd /var/www/mlb.rickysquid.org/html/bball-react
           git pull
           npm run build
           npm run start &
-          EOF2
+          EOF
           ssh staging 'bash -s' < /tmp/grab-and-run.sh
