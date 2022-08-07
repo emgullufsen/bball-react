@@ -13,13 +13,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh/
           echo $${{ secrets.SSH_PRIVATE_KEY }} > ~/.ssh/staging.key
-          cat << EOF > ~/.ssh/config
-          Host staging
-            HostName ${{ secrets.SSH_DOMAIN_NAME }}
-            User ${{ secrets.SSH_USER }}
-            IdentityFile ~/.ssh/staging.key
-            StrictHostKeyChecking no
-          EOF
+          chmod 600 ~/.ssh/staging.key
           cat ~/.ssh/config
         # env:
         #   SSH_USER: ${{ secrets.SSH_USER }}
