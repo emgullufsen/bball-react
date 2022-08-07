@@ -12,8 +12,7 @@ jobs:
           KEYF: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           ls
-          touch ~/.ssh/known_hosts
-          ssh-keyscan -H ${{ secrets.SSH_DOMAIN }} > ~/.ssh/known_hosts
+          echo ${{ secrets.SSH_KNOWN_HOSTS }} > ./known_hosts_ricky
           cat << EOF > /tmp/grab-and-run.sh
           cd /var/www/mlb.rickysquid.org/html/bball-react
           git pull
@@ -21,4 +20,4 @@ jobs:
           npm run start &
           EOF
           echo $KEYF > ./id_rickysquid
-          ssh -i ./id_rickysquid ubuntu@rickysquid.org 'bash -s' < /tmp/grab-and-run.sh
+          ssh -o UserKnownHostsFile=./known_hosts_ricky -i ./id_rickysquid ubuntu@rickysquid.org 'bash -s' < /tmp/grab-and-run.sh
