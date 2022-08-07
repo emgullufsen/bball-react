@@ -17,4 +17,4 @@ jobs:
           ls ~
           echo "ok"
           ls
-          ssh -i ./id_rickysquid ubuntu@rickysquid.org 'bash -s' < ~/.github/scripts/grab-and-run-bball.sh
+          ssh -i ./id_rickysquid ubuntu@rickysquid.org 'bash -s' < ~/work/bball-react/bball-react/.github/scripts/grab-and-run-bball.sh
