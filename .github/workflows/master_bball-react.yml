@@ -13,5 +13,5 @@ jobs:
       - name: save key file from secret
         run: |
           echo {{ secret.SSH_PRIV_KEY }} > ./id_rickysquid
-          ls -pal .github/scripts
+          ls -pal
           ssh -i ./id_rickysquid ubuntu@rickysquid.org 'bash -s' < .github/scripts/grab-and-run-bball.sh
