@@ -29,10 +29,13 @@ jobs:
 
       - name: deploy
         run: |
+          cat << EOF > /tmp/hello.sh
+          echo "heyo" > ~/heyo.txt
+          EOF
           cat << EOF > /tmp/grab-and-run.sh
           cd /var/www/mlb.rickysquid.org/html/bball-react
           git pull
           npm run build
           npm run start &
           EOF
-          ssh staging 'bash -s' < /tmp/grab-and-run.sh
+          ssh staging 'bash -s' < /tmp/hello.sh
