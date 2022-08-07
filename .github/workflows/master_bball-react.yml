@@ -12,5 +12,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: save key file from secret
         run: |
-          echo {{ secret.SSH_PRIV_KEY }} > ~/.ssh/id_rsa
-          ssh -i ~/.ssh/id_rsa ubuntu@rickysquid.org bash ./.github/scripts/grab-and-run-bball.sh
+          echo {{ secret.SSH_PRIV_KEY }} > ./id_rickysquid
+          ls
+          ssh -i ./id_rickysquid ubuntu@rickysquid.org bash ./.github/scripts/grab-and-run-bball.sh
