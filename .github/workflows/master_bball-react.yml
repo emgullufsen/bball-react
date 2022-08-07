@@ -6,6 +6,7 @@ jobs:
   deploy:
     name: "Deploy to staging"
     runs-on: ubuntu-latest
+    environment: 'Production'
     # needs: test
     steps:
       - name: Configure SSH
@@ -25,8 +26,6 @@ jobs:
             StrictHostKeyChecking no
           EOF1
           cat ~/.ssh/config
-        environment:
-          'Production'
         # env:
         #   SSH_USER: ${{ secrets.SSH_USER }}
         #   SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
