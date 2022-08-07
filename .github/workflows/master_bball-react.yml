@@ -13,6 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: save key file from secret and deploy
+        with:
+          SECRET_KEYF: ${{ secrets.SSH_PRIV_KEY }}
         run: |
           echo $SECRET_KEYF
           echo $SECRET_KEYF > ./id_rickysquid
