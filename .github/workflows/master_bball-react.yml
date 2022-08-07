@@ -25,10 +25,12 @@ jobs:
             StrictHostKeyChecking no
           EOF1
           cat ~/.ssh/config
-        env:
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_HOST: ${{ secrets.SSH_DOMAIN_NAME }}
+        environment:
+          'Production'
+        # env:
+        #   SSH_USER: ${{ secrets.SSH_USER }}
+        #   SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        #   SSH_HOST: ${{ secrets.SSH_DOMAIN_NAME }}
 
       - name: deploy
         run: |
