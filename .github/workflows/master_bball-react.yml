@@ -1,24 +1,36 @@
-name: Build/Deploy to mlb.rickysquid.org
-
-on:
-  push
-
+name: CI/CD
+on: [push, pull_request]
 jobs:
-  the-job:
+  # test:
+  #   ...
+  deploy:
+    name: "Deploy to staging"
     runs-on: ubuntu-latest
+    # needs: test
     steps:
-      - name: do it
-        env:
-          KEYF: ${{ secrets.SSH_PRIVATE_KEY }}
-          KH: ${{ secrets.SSH_KNOWN_HOSTS }}
+      - name: Configure SSH
         run: |
-          ls
-          echo $KH > ./known_hosts_ricky
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/staging.key
+          chmod 600 ~/.ssh/staging.key
+          cat >>~/.ssh/config <<END
+          Host staging
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/staging.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_DOMAIN_NAME }}
+
+      - name: deploy
+        run: |
           cat << EOF > /tmp/grab-and-run.sh
           cd /var/www/mlb.rickysquid.org/html/bball-react
           git pull
           npm run build
           npm run start &
           EOF
-          echo $KEYF > ./id_rickysquid
-          ssh -o UserKnownHostsFile=./known_hosts_ricky -i ./id_rickysquid ubuntu@rickysquid.org 'bash -s' < /tmp/grab-and-run.sh
+          ssh staging 'bash -s' < /tmp/grab-and-run.sh
