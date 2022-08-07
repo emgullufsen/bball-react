@@ -9,7 +9,6 @@ jobs:
     environment:
       name: 'Production'
     steps:
-      - shell: bash
       - uses: actions/checkout@v2
       - name: save key file from secret and deploy
         run: |
