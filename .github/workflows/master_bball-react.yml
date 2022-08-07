@@ -10,6 +10,10 @@ jobs:
     steps:
       - name: Configure SSH
         run: |
+          echo $SSH_USER
+          echo $SSH_DOMAIN_NAME
+          echo $SSH_DOMAIN
+          echo ${{ secrets.SSH_USER }}
           mkdir -p ~/.ssh/
           echo "$SSH_KEY" > ~/.ssh/staging.key
           chmod 600 ~/.ssh/staging.key
