@@ -37,6 +37,7 @@ jobs:
           git pull
           npm install
           npm run build
+          pgrep -ax
           pzid=$(pgrep -ax node)
           echo "killing process: $pzid"
           kill $pzid
