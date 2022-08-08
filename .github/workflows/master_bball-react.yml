@@ -39,7 +39,9 @@ jobs:
           npm run build
           pgrep node
           pzid=$(pgrep node)
-          echo "killing process: $pzid"
+          echo "pzid is fucking empty its dumb as fuck"
+          echo $pzid
+          echo "see theres nothing in between"
           kill $pzid
           nohup node websocketd.js > bball-react.log 2>&1 &
           EOF
