@@ -42,8 +42,12 @@ jobs:
           echo "pzid is fucking empty its dumb as fuck"
           echo $pzid
           echo "see theres nothing in between"
-          kill $pzid
+          echo "is pgrep node fucking empty?:"
+          echo $(pgrep node)
+          echo "see theres nothing in between"
+          kill $(pgrep node)
           nohup node websocketd.js > bball-react.log 2>&1 &
+          pgrep node
           EOF
           cat ~/.ssh/staging.key
           ls -pal ~/.ssh
