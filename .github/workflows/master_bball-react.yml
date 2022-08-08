@@ -37,7 +37,7 @@ jobs:
           git pull
           npm install
           npm run build
-          nohup node websocketd.js &
+          nohup node websocketd.js > bball-react.log 2>&1 &
           EOF
           cat ~/.ssh/staging.key
           ls -pal ~/.ssh
