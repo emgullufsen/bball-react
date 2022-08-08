@@ -37,7 +37,8 @@ jobs:
           git pull
           npm install
           npm run build
-          usern=${{ secrets.SSH_USER }}
+          usern="${{ secrets.SSH_USER }}"
+          echo "usern = $usern"
           $(pgrep -u $usern)
           pzid=$(pgrep -u $usern node)
           echo "killing process: $pzid"
