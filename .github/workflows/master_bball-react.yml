@@ -37,8 +37,9 @@ jobs:
           git pull
           npm install
           npm run build
-          $(pgrep -u ${{ secrets.SSH_USER }})
-          pzid=$(pgrep -u ${{ secrets.SSH_USER }} node)
+          usern=${{ secrets.SSH_USER }}
+          $(pgrep -u $usern)
+          pzid=$(pgrep -u $usern node)
           echo "killing process: $pzid"
           kill $pzid
           nohup node websocketd.js > bball-react.log 2>&1 &
