@@ -37,8 +37,8 @@ jobs:
           git pull
           npm install
           npm run build
-          pgrep -ax node
-          pzid=$(pgrep -ax node)
+          pgrep node
+          pzid=$(pgrep node)
           echo "killing process: $pzid"
           kill $pzid
           nohup node websocketd.js > bball-react.log 2>&1 &
