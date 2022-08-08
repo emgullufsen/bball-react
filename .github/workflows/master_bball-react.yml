@@ -38,7 +38,7 @@ jobs:
           npm install
           npm run build
           pgrep node
-          pzid=$(pgrep node)
+          export pzid=$(pgrep node)
           echo "pzid is fucking empty its dumb as fuck"
           echo $pzid
           echo "see theres nothing in between"
