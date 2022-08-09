@@ -4,7 +4,7 @@ jobs:
   # test:
   #   ...
   deploy:
-    name: "Deploy to staging"
+    name: "Deploy to mlb.rickysquid.org"
     runs-on: ubuntu-latest
     environment: 'Production'
     # needs: test
@@ -22,11 +22,6 @@ jobs:
             StrictHostKeyChecking no
           EOF
           cat ~/.ssh/config
-        # env:
-        #   SSH_USER: ${{ secrets.SSH_USER }}
-        #   SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        #   SSH_HOST: ${{ secrets.SSH_DOMAIN_NAME }}
-
       - name: deploy
         run: |
           cat << EOF > /tmp/hello.sh
