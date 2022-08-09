@@ -1,5 +1,5 @@
-name: CI/CD Baby
-on: workflow_dispatch
+name: Deploy to mlb.rickysquid.org
+on: push
 jobs:
   # test:
   #   ...
@@ -37,16 +37,7 @@ jobs:
           git pull
           npm install
           npm run build
-          pgrep node
-          export pzid=$(pgrep node)
-          echo "pzid is fucking empty its dumb as fuck"
-          echo $pzid
-          echo "see theres nothing in between"
-          echo "is pgrep node fucking empty?:"
-          echo $(pgrep node)
-          echo "see theres nothing in between"
-          kill $(pgrep node)
-          nohup node websocketd.js > bball-react.log 2>&1 &
+          systemctl --user restart bball-react
           EOF
           cat ~/.ssh/staging.key
           ls -pal ~/.ssh
