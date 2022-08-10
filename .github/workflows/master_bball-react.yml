@@ -32,7 +32,7 @@ jobs:
           git pull
           npm install
           npm run build
-          systemctl --user restart bball-react
+          systemctl restart bball-react
           EOF
           cat ~/.ssh/staging.key
           ls -pal ~/.ssh
