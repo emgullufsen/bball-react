@@ -48,7 +48,8 @@ function ScoresComponent() {
         (result) => {
           setIsLoaded(true);
           console.log(result);
-          setGames(result.dates[0].games);
+          if (resp.dates !== undefined)
+            setGames(result.dates[0].games);
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
