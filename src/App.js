@@ -32,7 +32,7 @@ function ScoresComponent() {
   }, []);
 
   useEffect(() => {
-    if (resp.dates !== undefined) {
+    if (resp.dates !== undefined && resp.dates.length) {
       console.log(`scores date = ${resp.dates[0].date}, gdate = ${yankDateString(gdate)} and isSame = ${yankDateString(gdate) == resp.dates[0].date}`);
       if (resp.dates[0].date == yankDateString(gdate)) {
         setGames(resp.dates[0].games);
