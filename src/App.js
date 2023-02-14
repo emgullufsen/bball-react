@@ -118,7 +118,7 @@ function ScoresComponent() {
               </button>
               <div>
                 <label htmlFor="date_picky"></label>
-                <input type="date" id="date_picky" min="2021-03-01" max="2021-10-05" onChange={setGdateWithString} value={yankDateString(gdate)} />
+                <input type="date" id="date_picky" min="2023-03-30" max="2023-11-04" onChange={setGdateWithString} value={yankDateString(gdate)} />
               </div>
               <button className="button is-ghost" onClick={addOneDay}>
                 <FontAwesomeIcon icon={faArrowRight} />
