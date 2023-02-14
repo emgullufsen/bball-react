@@ -82,7 +82,7 @@ function ScoresComponent() {
               </tr>
             </thead>
             <tbody>
-              {games.map(item => (
+              {games.length ? games.map(item => (
                 <tr key={item.gamePk}>
                   <td>
                     <figure>
@@ -103,7 +103,7 @@ function ScoresComponent() {
                   </td>
                   <td>{item.teams.away.score}</td>
                 </tr>
-              ))}
+              )) : <span>No Games Found!</span>}
             </tbody>
           </table>
         </div>
