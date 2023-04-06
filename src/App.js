@@ -87,19 +87,21 @@ function ScoresComponent() {
                   <td>
                     <figure>
                       <img className="team_logo" src={'/images/' + item.teams.home.team.id + '.svg'} />
-                    </figure>
-                    <figcaption>
+                      <figcaption>
                       {item.teams.home.team.name}
-                    </figcaption>
+                      </figcaption>
+                    </figure>
+                    
                   </td>
                   <td>{item.teams.home.score}</td>
                   <td>
                     <figure>
                       <img className="team_logo" src={'/images/' + item.teams.away.team.id + '.svg'} />
-                    </figure>
-                    <figcaption>
+                      <figcaption>
                       {item.teams.away.team.name}
-                    </figcaption>
+                      </figcaption>
+                    </figure>
+                    
                   </td>
                   <td>{item.teams.away.score}</td>
                 </tr>
