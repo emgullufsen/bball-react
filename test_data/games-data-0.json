@@ -1022,7 +1022,7 @@
                 "losses": 42,
                 "pct": ".488"
               },
-              "score": 2,
+              "score": 3,
               "team": {
                 "id": 114,
                 "name": "Cleveland Guardians",
@@ -1095,7 +1095,7 @@
                 "losses": 37,
                 "pct": ".554"
               },
-              "score": 0,
+              "score": 1,
               "team": {
                 "id": 137,
                 "name": "San Francisco Giants",
@@ -1110,7 +1110,7 @@
                 "losses": 46,
                 "pct": ".446"
               },
-              "score": 0,
+              "score": 1,
               "team": {
                 "id": 121,
                 "name": "New York Mets",
