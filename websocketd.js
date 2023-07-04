@@ -1,22 +1,13 @@
-const express = require('express');
+import { yankDateString, schemePlusDomain, endPointBase } from './src/yank.js';
+
+import express from 'express';
 const app = express();
-const http = require('http');
+import http from 'http';
 const server = http.createServer(app);
-const { Server } = require("socket.io");
+import { Server } from 'socket.io';
 const io = new Server(server, {path: "/scoresws"});
-//io.path("/scoresws");
-const axios = require('axios');
+import axios from 'axios'
 
-const yankDateString = (d) => {
-  let day = (d.getDate()).toString();
-  let month = (d.getMonth() + 1).toString();
-  let year = d.getFullYear().toString();
-  let day_p = (day.length < 2) ? `0${day}` : day;
-  let month_p = (month.length < 2) ? `0${month}` : month;
-  return `${year}-${month_p}-${day_p}`;
-};
-
-const endPointBase = "http://statsapi.mlb.com/api/v1/schedule/games/?sportId=1"
 const port = process.env.PORT || 4101
 
 app.get('/', (req, res) => {

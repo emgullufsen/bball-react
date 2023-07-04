@@ -7,4 +7,9 @@ const yankDateString = (d) => {
     return `${year}-${month_p}-${day_p}`;
   };
 
-export { yankDateString }
+//const getScoresFromMLB = ()
+
+const schemePlusDomain = "http://statsapi.mlb.com";
+const endPointBase = schemePlusDomain + "/api/v1/schedule/games/?sportId=1";
+
+export { yankDateString, schemePlusDomain, endPointBase }

@@ -89,6 +89,7 @@ function ScoresComponent() {
                       <img className="team_logo" src={'/images/' + item.teams.home.team.id + '.svg'} />
                       <figcaption>
                       {item.teams.home.team.name}
+                      {item.teams.home.leagueRecord.wins} - {item.teams.home.leagueRecord.losses}
                       </figcaption>
                     </figure>
                     
@@ -99,6 +100,7 @@ function ScoresComponent() {
                       <img className="team_logo" src={'/images/' + item.teams.away.team.id + '.svg'} />
                       <figcaption>
                       {item.teams.away.team.name}
+                      {item.teams.away.leagueRecord.wins} - {item.teams.away.leagueRecord.losses}
                       </figcaption>
                     </figure>
                     
