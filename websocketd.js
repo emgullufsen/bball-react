@@ -7,6 +7,11 @@ const server = http.createServer(app);
 import { Server } from 'socket.io';
 const io = new Server(server, {path: "/scoresws"});
 import axios from 'axios'
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const port = process.env.PORT || 4101
 
@@ -34,10 +39,12 @@ function emitScores() {
   dat.setHours(dat.getHours() - 8);
   let ds = yankDateString(dat);
   let the_url = `${endPointBase}&startDate=${ds}&endDate=${ds}`;
-  axios.get(the_url).then(
+  fetch(the_url)
+  .then(res => res.json())
+  .then(
     (r) => {
-      console.log(r.data);
-      io.emit('scoresupdate', r.data);
+      console.log(r);
+      io.emit('scoresupdate', r);
     }
   );
 }
