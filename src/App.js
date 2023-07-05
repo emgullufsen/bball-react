@@ -13,6 +13,7 @@ function ScoresComponent() {
   const [games, setGames] = useState([]);
   const [gdate, setGdate] = useState(new Date());
   const [resp, setResp] = useState({});
+  const [lives, setLives] = useState({});
   let clearGames = () => { setGames([]); };
   let addOneDay = () => { setGdate(new Date(gdate.setDate(gdate.getDate() + 1))); };
   let subOneDay = () => { setGdate(new Date(gdate.setDate(gdate.getDate() - 1))); };
@@ -27,7 +28,23 @@ function ScoresComponent() {
   useEffect(() => {
     const socket = io({ path: "/scoresws" });
     socket.on('scoresupdate', function (scores) {
+      console.log("scores updated");
+      console.log(scores)
       setResp(scores);
+    });
+    socket.on('liveupdate', function (live) {
+      console.log("live");
+      console.log(live);
+      console.log("lives")
+      let livesl = lives;
+      console.log(lives);
+      console.log("livesl");
+      console.log(livesl);
+      livesl[live.gamePk] = live;
+      setLives(livesl);
+      console.log("gamePk index into lives");
+      console.log(lives[live.gamePk]);
+      console.log("above live updated");
     });
   }, []);
 
@@ -106,6 +123,12 @@ function ScoresComponent() {
                     
                   </td>
                   <td>{item.teams.away.score}</td>
+                  <td>gamePk = {item.gamePk}</td>
+                  
+                  { lives[item.gamePk] ? 
+                    <td>Inning: {lives[item.gamePk].liveData.linescore.currentInning}</td> : 
+                    <td>nothing in yet</td> }
+                  
                 </tr>
               )) : <span>No Games Found!</span>}
             </tbody>

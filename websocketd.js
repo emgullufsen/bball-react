@@ -29,6 +29,7 @@ app.use('/images', (req, res) => {
 
 io.on('connection', (socket) => {
     console.log('a user connected');
+    emitScores();
     socket.on('disconnect', () => {
       console.log('user disconnected');
     });
@@ -40,11 +41,20 @@ function emitScores() {
   let ds = yankDateString(dat);
   let the_url = `${endPointBase}&startDate=${ds}&endDate=${ds}`;
   fetch(the_url)
-  .then(res => res.json())
+  .then(res1 => res1.json())
   .then(
-    (r) => {
-      console.log(r);
-      io.emit('scoresupdate', r);
+    (r1) => {
+      //console.log(r);
+      io.emit('scoresupdate', r1);
+      r1.dates[0].games.forEach((g,i,gs) => {
+        fetch(`${schemePlusDomain}${g.link}`)
+        .then(res2 => res2.json())
+        .then(
+          (r2) => {
+            io.emit('liveupdate', r2);
+          }
+        )
+      });
     }
   );
 }
@@ -53,4 +63,4 @@ server.listen(port, () => {
   console.log(`listening on *:${port}`);
 });
 
-setInterval(emitScores, 5000);
+setInterval(emitScores, 30000);
