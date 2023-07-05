@@ -123,12 +123,14 @@ function ScoresComponent() {
                     
                   </td>
                   <td>{item.teams.away.score}</td>
-                  <td>gamePk = {item.gamePk}</td>
+                  {/* <td>gamePk = {item.gamePk}</td> */}
                   
                   { lives[item.gamePk] ? 
-                    <td>Inning: {lives[item.gamePk].liveData.linescore.currentInning}</td> : 
-                    <td>nothing in yet</td> }
-                  
+                      (lives[item.gamePk].liveData.linescore.currentInning ? 
+                        <td>Inning: {lives[item.gamePk].liveData.linescore.currentInning}</td> : 
+                        lives[item.gamePk].gameData.datetime.time) : 
+                      <td>nothing in yet</td> }
+                    
                 </tr>
               )) : <span>No Games Found!</span>}
             </tbody>
