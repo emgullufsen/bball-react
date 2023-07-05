@@ -1,4 +1,4 @@
-## baseball scores from mlb in react.js
+## baseball scores from mlb in react.js l2
 
 [![mlb.rickysquid.org deploy](https://github.com/emgullufsen/bball-react/actions/workflows/master_bball-react.yml/badge.svg)](https://github.com/emgullufsen/bball-react/actions/workflows/master_bball-react.yml)
 
