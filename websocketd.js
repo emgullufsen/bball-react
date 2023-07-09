@@ -63,4 +63,4 @@ server.listen(port, () => {
   console.log(`listening on *:${port}`);
 });
 
-setInterval(emitScores, 30000);
+setInterval(emitScores, 90000);

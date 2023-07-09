@@ -129,7 +129,7 @@ function ScoresComponent() {
                   
                   { lives[item.gamePk] ? 
                       (lives[item.gamePk]["gameData"]["status"]["detailedState"] == "In Progress" ?
-                        <td>Inning: {lives[item.gamePk].liveData.linescore.currentInning}</td> :
+                        <td>Inning: {lives[item.gamePk].liveData.linescore.currentInning} {lives[item.gamePk].liveData.linescore.inningHalf == "Bottom" ? '▼' : '▼'}</td> :
                         (lives[item.gamePk]["gameData"]["status"]["detailedState"] == "Final" ?
                           <td>Final</td> :
                           <td>{lives[item.gamePk].gameData.datetime.time}</td>)) :
