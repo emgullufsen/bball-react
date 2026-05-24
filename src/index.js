@@ -1,9 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { ScoresComponent } from './App';
 import './index.css';
+import { createRoot } from 'react-dom/client';
+const container = document.getElementById('scores_spot');
+const root = createRoot(container);
+root.render(<ScoresComponent />);
 
-ReactDOM.render(
-  <ScoresComponent />,
-  document.getElementById('scores_spot')
-);

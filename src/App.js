@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 import './App.css';
 import './bulma.css';
 import { yankDateString } from './yank';
-import { io } from "socket.io/client-dist/socket.io";
+import { io } from "socket.io-client";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
